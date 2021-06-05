@@ -5,7 +5,6 @@ class Cliutils < Formula
   ARCH = "darwin_amd64".freeze
   BIN = "#{NAME}_#{ARCH}".freeze
 
-  # desc "JSON API framework implemented with gRPC and Gateway"
   homepage "https://github.com/#{REPO}"
   url "https://github.com/#{REPO}/releases/download/v#{VERSION}/#{BIN}"
   version VERSION
