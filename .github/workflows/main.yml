@@ -4,7 +4,7 @@ jobs:
   test:
     strategy:
       matrix:
-        runs-on: ['macOS-latest', 'macOS-10.14']
+        runs-on: ['macOS-latest']
 
     runs-on: ${{ matrix.runs-on }}
 
@@ -13,7 +13,7 @@ jobs:
 
     - name: Install tools
       run: |
-        brew install --build-bottle --verbose Formula/*.rb
+        brew install --build-bottle --verbose Formula/ghsync.rb
 
     # FIXME: Some tools have no tests
     # - name: Run tests
