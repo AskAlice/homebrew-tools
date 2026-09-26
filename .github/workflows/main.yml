@@ -1,5 +1,9 @@
 name: CI
-on: [push]
+# Only formula changes need this; cask bumps (Casks/**) from the SpacialShell release
+# workflow would otherwise trigger it on every release.
+on:
+  push:
+    paths: ['Formula/**', '.github/workflows/main.yml']
 jobs:
   test:
     strategy:
