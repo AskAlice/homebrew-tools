@@ -1,0 +1,40 @@
+name: Update SpacialShell cask
+
+on:
+  schedule:
+    - cron: "23 * * * *" # hourly
+  workflow_dispatch:
+  repository_dispatch:
+    types: [spacialshell-release]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-spacialshell
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # schedule and repository_dispatch run on the default branch; workflow_dispatch on the chosen one.
+      - uses: actions/checkout@v7
+
+      - name: Bump version and sha256 from the latest release
+        id: bump
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash .github/scripts/update-spacialshell.sh
+
+      - name: Commit and push
+        if: steps.bump.outputs.changed == 'true'
+        env:
+          VERSION: ${{ steps.bump.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Casks/spacialshell.rb
+          git commit -m "spacialshell $VERSION"
+          git push origin "HEAD:$GITHUB_REF_NAME"
