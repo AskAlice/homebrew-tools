@@ -1,6 +1,6 @@
 cask "spacialshell" do
-  version "0.4.1"
-  sha256 "393202586a5397bb338978d48032b82630a080fef52ba3c508233387b02566c0"
+  version "0.4.2"
+  sha256 "727814de8b5dcf1a6903f3b7adbad6042a162ee993d03eee934f917f052aeee9"
 
   url "https://github.com/AskAlice/SpacialShell-MacOS/releases/download/v#{version}/SpacialShell-#{version}.dmg"
   name "SpacialShell"
