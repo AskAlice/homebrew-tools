@@ -12,6 +12,9 @@ cask "spacialshell" do
     strategy :github_latest
   end
 
+  # Sparkle updates the app in place (#58); brew upgrade skips it unless --greedy.
+  auto_updates true
+
   depends_on arch: :arm64
   depends_on macos: :sonoma
 
